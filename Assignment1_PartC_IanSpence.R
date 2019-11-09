@@ -249,42 +249,62 @@ keep(Alberta, NewBrunswick, Canada, Odonata, sure = TRUE)
 
 #Now let's use the interpolation and extrapolation function iNEXT.  We can compare data between each province to direct us to which province is best for our trip to discover diverse Odonata samples.  iNEXT allows us to enter the calculation into ggplot so we can visualize the sample coverage data. 
 
+# Create a function to: 
+
+plotProvince <- function(x) {
+
+Dataset <- Odonata %>%
+  filter(!is.na(Odonata$bin_uri)) %>%
+  filter(province_state == x)
+BINs <- Dataset[, 8] 
+colnames(BINs) <- "Freq"
+BIN.Freq <- data.frame(table(BINs$Freq))
+BIN.Freq.Only <- BIN.Freq$Freq
+
+BIN.i <- iNEXT(BIN.Freq.Only)
+
+return(BIN.i)
+}
+
+
 #First determine the sample coverage in Alberta.
 
 #Filter the original Odonata dataset for AB samples with a BIN entry.
 
-AB.Dataset <- Odonata %>%
-  filter(!is.na(Odonata$bin_uri)) %>%
-  filter(province_state == "Alberta")
+#AB.Dataset <- Odonata %>%
+#  filter(!is.na(Odonata$bin_uri)) %>%
+#  filter(province_state == "Alberta")
 
 
 #Further subset the data to only contain the BIN_uri column, column 8.
 
-AB.BINs <- AB.Dataset[, 8] 
+#AB.BINs <- AB.Dataset[, 8] 
 
 
 #Name this column "Freq".
 
-colnames(AB.BINs) <- "Freq"
+#colnames(AB.BINs) <- "Freq"
 
 
 #Create a data frame listing the frequency of unique BINs in AB. 
 
-AB.BIN.Freq <- data.frame(table(AB.BINs$Freq))
+#AB.BIN.Freq <- data.frame(table(AB.BINs$Freq))
 
 
 #Change this into an atomic vector. 
 
-AB.BIN.Freq.Only <- AB.BIN.Freq$Freq
+#AB.BIN.Freq.Only <- AB.BIN.Freq$Freq
 
 
 #Apply the iNEXT function to the AB BIN Frequency.
 
-iNEXT(AB.BIN.Freq.Only, )
+# iNEXT(AB.BIN.Freq.Only, )
 
 #Now let's plot this data using ggiNEXT.  First, put the iNEXT output into an object.
 
-AB.BIN.i <- iNEXT(AB.BIN.Freq.Only, )
+# AB.BIN.i <- iNEXT(AB.BIN.Freq.Only, )
+AB.BIN.i <- plotProvince("Alberta")
+AB.BIN.i
 
 #Plot this using ggiNEXT.  Our arguments are set to project the number of potential unique BIN entries that have yet to be sampled and the number of samples required to uncover these unique BINs.
 
@@ -296,42 +316,45 @@ ggiNEXT(x = AB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size 
 
 #Filter the original Odonata dataset for New Brunswick samples with a BIN entry.
 
-NB.Dataset <- Odonata %>%
-  filter(!is.na(Odonata$bin_uri)) %>%
-  filter(province_state == "New Brunswick")
+NB.BIN.i <- plotProvince("New Brunswick")
+ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1)
+
+#NB.Dataset <- Odonata %>%
+#  filter(!is.na(Odonata$bin_uri)) %>%
+#  filter(province_state == "New Brunswick")
 
 
 #Further subset the data to only contain the BIN_uri column, column 8.
 
-NB.BINs <- NB.Dataset[, 8]
+#NB.BINs <- NB.Dataset[, 8]
 
 
 #Name this column "Freq".
 
-colnames(NB.BINs) <- "Freq"
+#colnames(NB.BINs) <- "Freq"
 
 
 #Create a data frame listing the frequency of unique BINs in NB. 
 
-NB.BIN.Freq <- data.frame(table(NB.BINs$Freq))
+#NB.BIN.Freq <- data.frame(table(NB.BINs$Freq))
 
 
 #Change this into an atomic vector.
 
-NB.BIN.Freq.Only <- NB.BIN.Freq$Freq
+#NB.BIN.Freq.Only <- NB.BIN.Freq$Freq
 
 
 #Apply the iNEXT function to the NB BIN Frequency.
 
-iNEXT(NB.BIN.Freq.Only, )
+#iNEXT(NB.BIN.Freq.Only, )
 
 #Let's plot this data using ggiNEXT.  First, put the iNEXT output into an object.
 
-NB.BIN.i <- iNEXT(NB.BIN.Freq.Only, )
+#NB.BIN.i <- iNEXT(NB.BIN.Freq.Only, )
 
 #Plot this using ggiNEXT.  Our arguments are set to project the number of potential unique BIN entries that have yet to be sampled and the number of samples required to uncover these unique BINs.
 
-ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1)
+#ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1)
 
 #Great.  Let's analyze the results of our plots.  
 
