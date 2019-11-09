@@ -165,93 +165,44 @@ BC.AT.mean <- mean(BC.AT.Prop$ATproportion)
 
 #Commenting is the same as it was in BC for all other provinces. 
 
-
-#Alberta
-
-AB.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "Alberta")
-
-AB.NucFreq <- AB.NucFreq %>%
-  filter(AB.NucFreq$N == 0)
-
-AB.AT.Prop <- AB.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-AB.AT.mean <- mean(AB.AT.Prop$ATproportion)
+## Create a function to: 
 
 
-#Manitoba
+ProvinceNuc <- function (x, type) {
+  
+  if (type == 'province') {
+X.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
+  filter(BIN.Prov$province_state == x)
+  }
+  
+  else {
+    X.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N")))
+  }
 
-MN.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "Manitoba")
+  X.NucFreq <- X.NucFreq %>% 
+    filter(X.NucFreq$N == 0)
+  X.AT.Prop <- X.NucFreq %>%
+    mutate(ATproportion = ((A + T) / (A + T + G + C)))
+  X.AT.mean <- mean(X.AT.Prop$ATproportion)
+  
+  allCalcs <- list(X.NucFreq, X.AT.Prop, X.AT.mean)
+  
+  return(allCalcs)
+  
+}
 
-MN.NucFreq <- MN.NucFreq %>%
-  filter(MN.NucFreq$N == 0)
-
-MN.AT.Prop <- MN.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-MN.AT.mean <- mean(MN.AT.Prop$ATproportion)
-
-
-#New Brunswick
-
-NB.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "New Brunswick")
-
-NB.NucFreq <- NB.NucFreq %>%
-  filter(NB.NucFreq$N == 0)
-
-NB.AT.Prop <- NB.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-NB.AT.mean <- mean(NB.AT.Prop$ATproportion)
-
-
-#Ontario
-
-ON.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "Ontario")
-
-ON.NucFreq <- ON.NucFreq %>%
-  filter(ON.NucFreq$N == 0)
-
-ON.AT.Prop <- ON.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-ON.AT.mean <- mean(ON.AT.Prop$ATproportion)
-
-
-#Saskatchewan
-
-SK.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "Saskatchewan")
-
-SK.NucFreq <- SK.NucFreq %>%
-  filter(SK.NucFreq$N == 0)
-
-SK.AT.Prop <- SK.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-SK.AT.mean <- mean(SK.AT.Prop$ATproportion)
+Alberta <- ProvinceNuc("Alberta", "province")
+Manitoba <- ProvinceNuc("Manitoba", "province")
+NewBrunswick <- ProvinceNuc("New Brunswick", "province")
+Ontario <- ProvinceNuc("Ontario", "province")
+Saskatchewan <- ProvinceNuc("Saskatchewan", "province")
+Canada <- ProvinceNuc("Canada", "country")
 
 
 
 #Great, now let's calculate the mean AT proportion across Canada so we can compare these provinces to determine where the most diverse groups may be located.
 
 #The commenting for the following is the same except there in no need to filter by province as we want data from the whole country. 
-
-
-Can.Nuc.Freq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N")))
-
-  Can.Nuc.Freq <- Can.Nuc.Freq %>%
-  filter(Can.Nuc.Freq$N == 0)
-
-  Can.AT.Prop <- Can.Nuc.Freq %>%
-    mutate(ATproportion = ((A + T) / (A + T + G + C)))
-  
-  Can.AT.mean <- mean(Can.AT.Prop$ATproportion)
-
   
   
 #Let's determine the provinces with the largest difference in mean AT proportion compared to the Canadian dataset.  
