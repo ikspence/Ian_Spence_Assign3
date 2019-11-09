@@ -317,7 +317,7 @@ ggiNEXT(x = AB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size 
 #Filter the original Odonata dataset for New Brunswick samples with a BIN entry.
 
 NB.BIN.i <- plotProvince("New Brunswick")
-ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1)
+ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1) + scale_colour_manual(values=c("lightblue")) + scale_fill_manual(values=c("green"))
 
 #NB.Dataset <- Odonata %>%
 #  filter(!is.na(Odonata$bin_uri)) %>%
