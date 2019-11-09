@@ -221,24 +221,29 @@ which.min(Prov.Dif)
 
 #Is the AT proportion of British Columbia significantly different than that of Canada?
 
-t.test(AB.AT.Prop$ATproportion, Can.AT.Prop$ATproportion)
+# Use list index to access specific dataframe and column 
+# For example, here we are using the second element of the list named Alberta, which is a dataframe, and the 6th column of that dataframe. 
+
+t.test(Alberta[[2]][6], Canada[[2]][6])
 
 #Yes, it is.
 #Is the AT proportion of New Brunswick significantly different than that of Canada?
+t.test(NewBrunswick[[2]][6], Canada[[2]][6])
 
-t.test(NB.AT.Prop$ATproportion, Can.AT.Prop$ATproportion)
+#t.test(NB.AT.Prop$ATproportion, Can.AT.Prop$ATproportion)
 
 #Yes.  It's also significant. 
 
+#Let's clean up the environment and explore these two provinces more. 
 
+# Here I am using the gdata library to clean up the global environment more efficiently. Below you will see the 'keep' function, where you can specify which objects you would like to keep. First, I usually use keep by itself, and it prints out everything that it would throw away, then I use sure=TRUE to make it actually throw everything away. 
+library(gdata)
+keep(Alberta, NewBrunswick, Canada, Odonata)
 
-#Let's clean up the environment and explore these two provinces more.  
+# That looks about right! 
+# Now I will add sure = TRUE to actually get rid of everything except Odonata, Alberta, NewBrunswick and Canada.
 
-
-
-
-
-
+keep(Alberta, NewBrunswick, Canada, Odonata, sure = TRUE)
 
 #EXTRAPOLATION TO DETERMINE BEST PROVINCE####
 
@@ -255,7 +260,7 @@ AB.Dataset <- Odonata %>%
 
 #Further subset the data to only contain the BIN_uri column, column 8.
 
-AB.BINs <- AB.Dataset[, 8]
+AB.BINs <- AB.Dataset[, 8] 
 
 
 #Name this column "Freq".
