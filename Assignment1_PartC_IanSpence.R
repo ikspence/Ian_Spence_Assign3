@@ -135,38 +135,15 @@ table(C.BIN$province_state)
 BIN.Prov$nucleotides <- DNAStringSet((BIN.Prov$nucleotides))
 
 
+## Create a function to: 
+
 #Now determine the mean AT proportion for each of the six provinces to be analyzed.  
 
 #Determine the nucleotide frequencies.
-
-BC.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A", "C", "G", "T", "N"))) %>%
-  filter(BIN.Prov$province_state == "British Columbia")
-
-
 #Filter out any samples with Ns present. 
-
-BC.NucFreq <- BC.NucFreq %>%
-  filter(BC.NucFreq$N == 0)
-
-
 #Add another column with the AT proportion. 
-
-BC.AT.Prop <- BC.NucFreq %>%
-  mutate(ATproportion = ((A + T) / (A + T + G + C)))
-
-
 #Determine the mean of AT proportions across all samples from BC. 
-
-BC.AT.mean <- mean(BC.AT.Prop$ATproportion)
-
-
-
 #Repeat for all six provinces above the 100 sample threshold we have set. 
-
-#Commenting is the same as it was in BC for all other provinces. 
-
-## Create a function to: 
-
 
 ProvinceNuc <- function (x, type) {
   
@@ -191,6 +168,7 @@ X.NucFreq <- as.data.frame(letterFrequency(BIN.Prov$nucleotides, letters = c("A"
   
 }
 
+BritishColumbia <- ProvinceNuc("British Columbia", "province")
 Alberta <- ProvinceNuc("Alberta", "province")
 Manitoba <- ProvinceNuc("Manitoba", "province")
 NewBrunswick <- ProvinceNuc("New Brunswick", "province")
