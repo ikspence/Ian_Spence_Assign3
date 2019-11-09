@@ -39,9 +39,7 @@ library(ggplot2)
 #Now, read in the data from BOLD. This file was downloaded on October 4, 2019.
 
 #This file make takes 3-4 minutes to load.
-
 Odonata <- read_tsv("http://www.boldsystems.org/index.php/API_Public/combined?taxon=Odonata&format=tsv")
-
 
 #What does our data include?
 summary(Odonata)
@@ -49,25 +47,20 @@ summary(Odonata)
 #What are the names of the variables?
 names(Odonata)
 
-
 #Let's compare the rarefaction curves between global Odonata samples to Canadian Odonata samples.
-
 
 #Make a dataframe of the count of each unique BIN from around the world. 
 
 BIN.Count <- data.frame(table(Odonata$bin_uri))
-
 
 #Change the column names to "BIN" and "Frequency".
 
 BIN.Var <- c("BIN", "Frequency")
 colnames(BIN.Count) <- BIN.Var
 
-
 #Spread the BIN column to produe community data where variables are entries collected in a single location.
 
 BIN.Spr <- spread(BIN.Count, "BIN", "Frequency")
-
 
 #Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
 
@@ -187,22 +180,32 @@ Canada <- ProvinceNuc("Canada", "country")
   
 
 #Make a vector with the mean AT proportion of the provinces.
+#Prov.AT.Data <- data.frame(AB.AT.mean, BC.AT.mean, MN.AT.mean, ON.AT.mean, SK.AT.mean, NB.AT.mean, Can.AT.mean)
 
-Prov.AT.Data <- data.frame(AB.AT.mean, BC.AT.mean, MN.AT.mean, ON.AT.mean, SK.AT.mean, NB.AT.mean, Can.AT.mean)
+# Instead of the above, create a list of the means for each province 
+Prov.AT.Data <- c(Alberta[3], BritishColumbia[3], Manitoba[3], Ontario[3], Saskatchewan[3], NewBrunswick[3], Canada[3])
 
+# Check to make sure that worked 
+class(Prov.AT.Data)
 
 #Now, determine the difference in AT proportion between each province and the national mean.
+amnt_sub <- as.numeric(Canada[3])
+class(amnt_sub)
 
-AB.Dif <- AB.AT.mean - Can.AT.mean
-BC.Dif <- BC.AT.mean - Can.AT.mean
-MN.Dif <- MN.AT.mean - Can.AT.mean
-ON.Dif <- ON.AT.mean - Can.AT.mean
-SK.Dif <- SK.AT.mean - Can.AT.mean
-NB.Dif <- NB.AT.mean - Can.AT.mean
+Prov.Dif <- lapply(Prov.AT.Data, function(x, amnt_sub) x - amnt_sub, amnt_sub = amnt_sub)
+Prov.Dif
+
+## Removing this because it is now stored in Prov.Difs list 
+#AB.Dif <- AB.AT.mean - Can.AT.mean
+#BC.Dif <- BC.AT.mean - Can.AT.mean
+#MN.Dif <- MN.AT.mean - Can.AT.mean
+#ON.Dif <- ON.AT.mean - Can.AT.mean
+#SK.Dif <- SK.AT.mean - Can.AT.mean
+#NB.Dif <- NB.AT.mean - Can.AT.mean
 
 #Make a vector with all province difference values. 
 
-Prov.Dif <- c(AB.Dif, BC.Dif, MN.Dif, ON.Dif, SK.Dif, NB.Dif)
+#Prov.Dif <- c(AB.Dif, BC.Dif, MN.Dif, ON.Dif, SK.Dif, NB.Dif)
 
 #Check the max, ie. the province with the greatest relative AT proportion to the national mean.
 Prov.Dif
@@ -232,7 +235,6 @@ t.test(NB.AT.Prop$ATproportion, Can.AT.Prop$ATproportion)
 #Let's clean up the environment and explore these two provinces more.  
 
 
-rm(AB.AT.Prop, BC.AT.Prop, MN.AT.Prop, NS.AT.Prop, NW.AT.Prop, ON.AT.Prop, QB.AT.Prop, PE.AT.Prop, SK.AT.Prop, YK.AT.Prop, NB.AT.Prop, AB.NucFreq, BC.NucFreq, MN.NucFreq, NS.NucFreq, NW.NucFreq, ON.NucFreq, QB.NucFreq, PE.NucFreq, SK.NucFreq, YK.NucFreq, NB.NucFreq, AB.AT.mean, BC.AT.mean, MN.AT.mean, NS.AT.mean, NW.AT.mean, ON.AT.mean, QB.AT.mean, PE.AT.mean, SK.AT.mean, YK.AT.mean, NB.AT.mean, BIN.Var, C.BIN.Var, C.BIN, BIN.Prov, BIN.Spr, C.BIN.Spr, AB.Dif, BC.Dif, MN.Dif, NB.Dif, ON.Dif, SK.Dif, Can.AT.Prop, Can.Nuc.Freq, Prov.AT.Data, Can.AT.mean, Prov.Dif, BIN.Count, C.BIN.Count)
 
 
 
