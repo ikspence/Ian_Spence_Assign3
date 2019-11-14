@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 #TITLE, INTRODUCTION, AND QUESTIONS####
 
 #Written by Ian Spence - October 4, 2019. 
@@ -21,8 +20,6 @@
 
 #First, we can load packages to manage and manipulate our data. 
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 #  Title, Introduction and Questions  ---------------------------
 
 #  Written by Ian Spence - October 4, 2019. 
@@ -47,9 +44,6 @@
 #  Load packages ---------------------------
 
 #  First, we can load packages to manage and manipulate our data. 
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 library(tidyverse)
@@ -63,7 +57,6 @@ library(RSQLite)
 library(iNEXT)
 library(ggplot2)
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 #If any packages are not installed, enter their name into the following function first(remove the #).
 #install.packages()
@@ -95,8 +88,6 @@ BIN.Count <- data.frame(table(Odonata$bin_uri))
 
 #Change the column names to "BIN" and "Frequency".
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 #  If any packages are not installed, enter their name into the following function first(remove the # ).
 #  install.packages()
 
@@ -120,15 +111,11 @@ names(Odonata)
 BIN.Count <- data.frame(table(Odonata$bin_uri))
 
 #  Change the column names to "BIN" and "Frequency".
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 BIN.Var <- c("BIN", "Frequency")
 colnames(BIN.Count) <- BIN.Var
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 
 #Spread the BIN column to produe community data where variables are entries collected in a single location.
@@ -138,37 +125,26 @@ BIN.Spr <- spread(BIN.Count, "BIN", "Frequency")
 
 #Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 #  Spread the BIN column to produe community data where variables are entries collected in a single location.
 
 BIN.Spr <- spread(BIN.Count, "BIN", "Frequency")
 
 #  Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 rarecurve(BIN.Spr, ylab = "BIN Frequency")
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #See how the global samples from across the world.  BIN Frequency is still increasing as sample size increases.  Now let's look at the same type curve but with Canadian data. 
 
 
 #Seperate Canadian samples from the global samples. 
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 #  See how the global samples from across the world.  BIN Frequency is still increasing as sample size increases.  Now let's look at the same type curve but with Canadian data. 
 
 
 #  Seperate Canadian samples from the global samples. 
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 C.BIN <- Odonata %>%
@@ -176,11 +152,7 @@ C.BIN <- Odonata %>%
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #Make a dataframe of the count of each unique BIN from Canada. 
-=======
-#  Make a dataframe of the count of each unique BIN from Canada. 
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 =======
 #  Make a dataframe of the count of each unique BIN from Canada. 
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
@@ -189,11 +161,7 @@ C.BIN.Count <- data.frame(table(C.BIN$bin_uri))
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #Change the column names to "BIN" and "Frequency".
-=======
-#  Change the column names to "BIN" and "Frequency".
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 =======
 #  Change the column names to "BIN" and "Frequency".
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
@@ -204,11 +172,7 @@ colnames(C.BIN.Count) <- C.BIN.Var
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #Spread the BIN column to produce community data where variables are BIN entries collected in a single location.
-=======
-#  Spread the BIN column to produce community data where variables are BIN entries collected in a single location.
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 =======
 #  Spread the BIN column to produce community data where variables are BIN entries collected in a single location.
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
@@ -217,11 +181,7 @@ C.BIN.Spr <- spread(C.BIN.Count, "BIN", "Frequency")
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
-=======
-#  Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 =======
 #  Construct a rarefaction curve.  We want the ylab argument to be set to "BIN Frequency", the default is "Species".
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
@@ -229,7 +189,6 @@ C.BIN.Spr <- spread(C.BIN.Count, "BIN", "Frequency")
 rarecurve(C.BIN.Spr, ylab = "BIN Frequency")
 
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 #The rarefaction curve of Canadian data ends up flatter than the rarefaction curve of global data. In determining a place to look for diverse Odonata samples, Canada might not be the first option.  It is however well represented and because the conservation expedition can't leave the country, we will now determine where in Canada is the best place to look for more.
 
@@ -242,8 +201,6 @@ rarecurve(C.BIN.Spr, ylab = "BIN Frequency")
 #Before choosing provinces, filter out the following samples by:  
 #BIN NAs, Province NAs, missing nucleotide data, or anything without COI-5P as the markercode.
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 #  The rarefaction curve of Canadian data ends up flatter than the rarefaction curve of global data. In determining a place to look for diverse Odonata samples, Canada might not be the first option.  It is however well represented and because the conservation expedition can't leave the country, we will now determine where in Canada is the best place to look for more.
 
 #  Provincial AT Proportions  ---------------------------
@@ -253,9 +210,6 @@ rarecurve(C.BIN.Spr, ylab = "BIN Frequency")
 
 #  Before choosing provinces, filter out the following samples by:  
 #  BIN NAs, Province NAs, missing nucleotide data, or anything without COI-5P as the markercode.
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 BIN.Prov <- Odonata %>%
@@ -266,11 +220,7 @@ BIN.Prov <- Odonata %>%
 
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #Check how many provinces have a well represented number of samples.  We'll use 100 samples as our cutoff. 
-=======
-#  Check how many provinces have a well represented number of samples.  We'll use 100 samples as our cutoff. 
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 =======
 #  Check how many provinces have a well represented number of samples.  We'll use 100 samples as our cutoff. 
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
@@ -278,7 +228,6 @@ BIN.Prov <- Odonata %>%
 table(C.BIN$province_state)
 
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 #Looks like six provinces have 100+ samples.  Let's analyze the nucleotide data in each of these six datasets. 
 
@@ -288,16 +237,10 @@ table(C.BIN$province_state)
 
 #  First, turn our nucleotides into Biostrings.
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
-#  Looks like six provinces have 100+ samples.  Let's analyze the nucleotide data in each of these six datasets. 
-
-#  First, turn our nucleotides into Biostrings.
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 BIN.Prov$nucleotides <- DNAStringSet((BIN.Prov$nucleotides))
 
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 #Now determine the mean AT proportion for each of the six provinces to be analyzed.  
 
@@ -516,8 +459,6 @@ AB.BIN.i <- iNEXT(AB.BIN.Freq.Only, )
 
 #Plot this using ggiNEXT.  Our arguments are set to project the number of potential unique BIN entries that have yet to be sampled and the number of samples required to uncover these unique BINs.
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 ##  Create a function to: 
 
 #  Now determine the mean AT proportion for each of the six provinces to be analyzed.  
@@ -649,15 +590,11 @@ AB.BIN.i <- make_iNEXT("Alberta")
 AB.BIN.i
 
 # Plot this using ggiNEXT.  Our arguments are set to project the number of potential unique BIN entries that have yet to be sampled and the number of samples required to uncover these unique BINs.
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 ggiNEXT(x = AB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size = 1)
 
 
-<<<<<<< HEAD
 <<<<<<< HEAD
 #Great. Now we'll do the same for New Brunswick and compare the two. 
 
@@ -716,8 +653,6 @@ ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size 
 
 #Hsieh T.C., Ma K.H., Chao, A. (2019). A Quick Introduction to iNEXT via Examples. https://cran.r-project.org/web/packages/iNEXT/vignettes/Introduction.html [9]
 =======
-=======
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 # Great. Now we'll do the same for New Brunswick and compare the two. 
 
 # Filter the original Odonata dataset for New Brunswick samples with a BIN entry.
@@ -738,9 +673,6 @@ ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size 
 
 #  The iNEXT function was found at:
 #  Hsieh T.C., Ma K.H., Chao, A. (2019). A Quick Introduction to iNEXT via Examples. https://cran.r-project.org/web/packages/iNEXT/vignettes/Introduction.html [9]
-<<<<<<< HEAD
->>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
-=======
 >>>>>>> parent of 022adba... Delete Assignment1_PartC_IanSpence.R
 
 
