@@ -4,6 +4,8 @@
 
 #  Edited by Kassy Raymond - November 13, 2019
 
+# Final edits now complete.
+
           # Odonata Data Analysis: Locating Canadian Diversity
 
 
