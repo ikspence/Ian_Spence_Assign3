@@ -286,4 +286,3 @@ ggiNEXT(x = NB.BIN.i, type = 1) + theme_linedraw(base_size = 18, base_rect_size 
 #  The iNEXT function was found at:
 #  Hsieh T.C., Ma K.H., Chao, A. (2019). A Quick Introduction to iNEXT via Examples. https://cran.r-project.org/web/packages/iNEXT/vignettes/Introduction.html [9]
 
-
